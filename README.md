@@ -88,7 +88,7 @@ The platform follows a complete Machine Learning workflow:
 
 - Docker
 
-git clone https://github.com/TON_USERNAME/trafiq-ai.git
+git clone https://github.com/Moctar93/trafiq-ai.git
 
 cd trafiq-ai
 
