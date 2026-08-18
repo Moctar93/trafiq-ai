@@ -18,12 +18,19 @@ def main():
         for error in result["errors"]:
             print(f"- {error}")
 
-        storage.save_rejected(
-            result,
-            "example_com_rejected.json",
-        )
-
         return
+
+    print("\n--- OBSERVATION IDENTITY ---")
+    print(f"Crawl ID: {result['crawl_id']}")
+    print(f"Page ID: {result['page_id']}")
+    print(
+        f"Crawl timestamp: "
+        f"{result['crawl_timestamp']}"
+    )
+    print(
+        f"Content hash: "
+        f"{result['content_hash']}"
+    )
 
     raw_path = storage.save_raw(
         result,
@@ -34,9 +41,21 @@ def main():
         result,
     )
 
-    print(f"Raw observation: {raw_path}")
-    print(f"Processed dataset: {processed_path}")
-    print("Storage successful!")
+    print(
+        f"\nRaw observation: {raw_path}"
+    )
+
+    if processed_path is None:
+        print(
+            "Processed observation skipped: duplicate."
+        )
+    else:
+        print(
+            f"Processed dataset: "
+            f"{processed_path}"
+        )
+
+    print("\nStorage test completed!")
 
 
 if __name__ == "__main__":
