@@ -3,36 +3,27 @@ from collections import Counter
 from crawler.labeling import SEOClass
 
 
-DEFAULT_CONFIDENCE_THRESHOLD = 0.80
+MIN_TRAINING_VOTES = 3
+MIN_TRAINING_CONFIDENCE = 0.80
 
 
 def aggregate_labels(
     labels: dict[str, SEOClass],
-    confidence_threshold: float = DEFAULT_CONFIDENCE_THRESHOLD,
 ) -> dict:
     """
-    Aggregate labeling-function outputs into a global label.
+    Aggregate labeling function outputs into a global label.
 
     ABSTAIN votes are ignored.
 
-    The function returns:
-    - the majority label
-    - the consensus confidence
-    - the number of active votes
-    - the individual votes
-    - whether the result is ambiguous
-    - whether the result is eligible for dataset generation
+    If several classes have the same number of votes,
+    the result is considered ambiguous.
 
-    A result is dataset-eligible only when:
-    - there is at least one active vote
-    - the result is not ambiguous
-    - confidence >= confidence_threshold
+    Training eligibility is deliberately stricter than
+    final-label selection:
+    - minimum 3 active votes
+    - confidence >= 0.80
+    - not ambiguous
     """
-
-    if not 0 <= confidence_threshold <= 1:
-        raise ValueError(
-            "confidence_threshold must be between 0 and 1"
-        )
 
     active_labels = [
         label
@@ -45,6 +36,9 @@ def aggregate_labels(
         for name, label in labels.items()
     }
 
+    # --------------------------------------------------
+    # No active vote
+    # --------------------------------------------------
     if not active_labels:
         return {
             "label": SEOClass.ABSTAIN.value,
@@ -55,9 +49,16 @@ def aggregate_labels(
             "training_eligible": False,
         }
 
-    counts = Counter(active_labels)
+    # --------------------------------------------------
+    # Count votes
+    # --------------------------------------------------
+    counts = Counter(
+        active_labels
+    )
 
-    highest_count = max(counts.values())
+    highest_count = max(
+        counts.values()
+    )
 
     winners = [
         label
@@ -65,29 +66,54 @@ def aggregate_labels(
         if count == highest_count
     ]
 
-    confidence = highest_count / len(active_labels)
+    # --------------------------------------------------
+    # Confidence
+    # --------------------------------------------------
+    confidence = (
+        highest_count
+        / len(active_labels)
+    )
 
-    # Several labels have the same number of votes.
+    confidence = round(
+        confidence,
+        4,
+    )
+
+    vote_count = len(
+        active_labels
+    )
+
+    # --------------------------------------------------
+    # Ambiguous result
+    # --------------------------------------------------
     if len(winners) > 1:
         return {
             "label": SEOClass.ABSTAIN.value,
-            "confidence": round(confidence, 4),
-            "vote_count": len(active_labels),
+            "confidence": confidence,
+            "vote_count": vote_count,
             "votes": votes,
             "ambiguous": True,
             "training_eligible": False,
         }
 
+    # --------------------------------------------------
+    # Clear winner
+    # --------------------------------------------------
     winner = winners[0]
 
+    # --------------------------------------------------
+    # Strict training eligibility
+    # --------------------------------------------------
     training_eligible = (
-        confidence >= confidence_threshold
+        confidence >= MIN_TRAINING_CONFIDENCE
+        and vote_count >= MIN_TRAINING_VOTES
+        and len(winners) == 1
     )
 
     return {
         "label": winner.value,
-        "confidence": round(confidence, 4),
-        "vote_count": len(active_labels),
+        "confidence": confidence,
+        "vote_count": vote_count,
         "votes": votes,
         "ambiguous": False,
         "training_eligible": training_eligible,

@@ -20,6 +20,7 @@ class SEOFeatures(BaseModel):
     h4_count: int = Field(ge=0)
     h5_count: int = Field(ge=0)
     h6_count: int = Field(ge=0)
+    heading_total_count: int = Field(ge=0)
 
     word_count: int = Field(ge=0)
     character_count: int = Field(ge=0)
@@ -34,7 +35,16 @@ class SEOFeatures(BaseModel):
     image_count: int = Field(ge=0)
     images_with_alt: int = Field(ge=0)
     images_without_alt: int = Field(ge=0)
+    images_missing_alt_attribute: int = Field(
+        ge=0
+    )
     empty_alt_count: int = Field(ge=0)
+
+    alt_coverage_ratio: Optional[float] = Field(
+        default=None,
+        ge=0,
+        le=1,
+    )
 
     total_link_count: int = Field(ge=0)
     internal_link_count: int = Field(ge=0)
@@ -42,3 +52,9 @@ class SEOFeatures(BaseModel):
     nofollow_link_count: int = Field(ge=0)
     sponsored_link_count: int = Field(ge=0)
     ugc_link_count: int = Field(ge=0)
+
+    internal_link_ratio: Optional[float] = Field(
+        default=None,
+        ge=0,
+        le=1,
+    )

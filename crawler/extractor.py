@@ -15,9 +15,13 @@ class HTMLExtractor:
             "html.parser",
         )
 
-        self.base_domain = urlparse(base_url).netloc.lower()
+        self.base_domain = urlparse(
+            base_url
+        ).netloc.lower()
 
     def extract_title(self) -> dict:
+        """Extract title-related features."""
+
         title = self.soup.find("title")
 
         if not title:
@@ -27,20 +31,28 @@ class HTMLExtractor:
                 "title_word_count": 0,
             }
 
-        text = title.get_text(" ", strip=True)
+        text = title.get_text(
+            " ",
+            strip=True,
+        )
 
         return {
             "title_exists": True,
             "title_length": len(text),
-            "title_word_count": len(text.split()),
+            "title_word_count": len(
+                text.split()
+            ),
         }
 
     def extract_meta_description(self) -> dict:
+        """Extract meta description features."""
+
         meta = self.soup.find(
             "meta",
             attrs={
                 "name": lambda value: (
-                    value and value.lower() == "description"
+                    value
+                    and value.lower() == "description"
                 )
             },
         )
@@ -52,29 +64,74 @@ class HTMLExtractor:
                 "meta_description_word_count": 0,
             }
 
-        content = meta.get("content", "").strip()
+        content = meta.get(
+            "content",
+            "",
+        ).strip()
 
         return {
             "meta_description_exists": True,
-            "meta_description_length": len(content),
-            "meta_description_word_count": len(content.split()),
+            "meta_description_length": len(
+                content
+            ),
+            "meta_description_word_count": len(
+                content.split()
+            ),
         }
 
     def extract_headings(self) -> dict:
+        """Extract heading counts and total heading count."""
+
+        h1_count = len(
+            self.soup.find_all("h1")
+        )
+        h2_count = len(
+            self.soup.find_all("h2")
+        )
+        h3_count = len(
+            self.soup.find_all("h3")
+        )
+        h4_count = len(
+            self.soup.find_all("h4")
+        )
+        h5_count = len(
+            self.soup.find_all("h5")
+        )
+        h6_count = len(
+            self.soup.find_all("h6")
+        )
+
+        heading_total_count = (
+            h1_count
+            + h2_count
+            + h3_count
+            + h4_count
+            + h5_count
+            + h6_count
+        )
+
         return {
-            "h1_count": len(self.soup.find_all("h1")),
-            "h2_count": len(self.soup.find_all("h2")),
-            "h3_count": len(self.soup.find_all("h3")),
-            "h4_count": len(self.soup.find_all("h4")),
-            "h5_count": len(self.soup.find_all("h5")),
-            "h6_count": len(self.soup.find_all("h6")),
+            "h1_count": h1_count,
+            "h2_count": h2_count,
+            "h3_count": h3_count,
+            "h4_count": h4_count,
+            "h5_count": h5_count,
+            "h6_count": h6_count,
+            "heading_total_count": (
+                heading_total_count
+            ),
         }
 
     def extract_content(self) -> dict:
-        # Remove elements that should not be considered
-        # visible textual content.
+        """Extract textual content features."""
+
         for element in self.soup.find_all(
-            ["script", "style", "noscript", "svg"]
+            [
+                "script",
+                "style",
+                "noscript",
+                "svg",
+            ]
         ):
             element.decompose()
 
@@ -93,7 +150,9 @@ class HTMLExtractor:
         return {
             "word_count": len(words),
             "character_count": len(text),
-            "unique_word_count": len(unique_words),
+            "unique_word_count": len(
+                unique_words
+            ),
             "unique_word_ratio": (
                 len(unique_words) / len(words)
                 if words
@@ -102,33 +161,61 @@ class HTMLExtractor:
         }
 
     def extract_images(self) -> dict:
+        """Extract image and alt-attribute features."""
+
         images = self.soup.find_all("img")
 
         images_with_alt = 0
         images_without_alt = 0
+        images_missing_alt_attribute = 0
         empty_alt_count = 0
 
         for image in images:
+
             if not image.has_attr("alt"):
                 images_without_alt += 1
+                images_missing_alt_attribute += 1
                 continue
 
-            alt = image.get("alt", "").strip()
+            alt = image.get(
+                "alt",
+                "",
+            ).strip()
 
             if alt:
                 images_with_alt += 1
             else:
+                images_without_alt += 1
                 empty_alt_count += 1
 
+        image_count = len(images)
+
+        alt_coverage_ratio = (
+            images_with_alt / image_count
+            if image_count > 0
+            else None
+        )
+
         return {
-            "image_count": len(images),
+            "image_count": image_count,
             "images_with_alt": images_with_alt,
             "images_without_alt": images_without_alt,
+            "images_missing_alt_attribute": (
+                images_missing_alt_attribute
+            ),
             "empty_alt_count": empty_alt_count,
+            "alt_coverage_ratio": (
+                alt_coverage_ratio
+            ),
         }
 
     def extract_links(self) -> dict:
-        links = self.soup.find_all("a", href=True)
+        """Extract internal, external and rel-based link features."""
+
+        links = self.soup.find_all(
+            "a",
+            href=True,
+        )
 
         internal_links = 0
         external_links = 0
@@ -137,7 +224,10 @@ class HTMLExtractor:
         ugc_links = 0
 
         for link in links:
-            href = link.get("href", "").strip()
+            href = link.get(
+                "href",
+                "",
+            ).strip()
 
             if not href:
                 continue
@@ -147,21 +237,31 @@ class HTMLExtractor:
                 href,
             )
 
-            parsed_url = urlparse(absolute_url)
+            parsed_url = urlparse(
+                absolute_url
+            )
 
-            domain = parsed_url.netloc.lower()
+            domain = (
+                parsed_url.netloc.lower()
+            )
 
             if domain == self.base_domain:
                 internal_links += 1
             elif domain:
                 external_links += 1
 
-            rel = link.get("rel", [])
+            rel = link.get(
+                "rel",
+                [],
+            )
 
             if isinstance(rel, str):
                 rel = rel.split()
 
-            rel = [value.lower() for value in rel]
+            rel = [
+                value.lower()
+                for value in rel
+            ]
 
             if "nofollow" in rel:
                 nofollow_links += 1
@@ -172,13 +272,24 @@ class HTMLExtractor:
             if "ugc" in rel:
                 ugc_links += 1
 
+        total_link_count = len(links)
+
+        internal_link_ratio = (
+            internal_links / total_link_count
+            if total_link_count > 0
+            else None
+        )
+
         return {
-            "total_link_count": len(links),
+            "total_link_count": total_link_count,
             "internal_link_count": internal_links,
             "external_link_count": external_links,
             "nofollow_link_count": nofollow_links,
             "sponsored_link_count": sponsored_links,
             "ugc_link_count": ugc_links,
+            "internal_link_ratio": (
+                internal_link_ratio
+            ),
         }
 
     def extract_all(self) -> dict:
@@ -186,11 +297,28 @@ class HTMLExtractor:
 
         features = {}
 
-        features.update(self.extract_title())
-        features.update(self.extract_meta_description())
-        features.update(self.extract_headings())
-        features.update(self.extract_content())
-        features.update(self.extract_images())
-        features.update(self.extract_links())
+        features.update(
+            self.extract_title()
+        )
+
+        features.update(
+            self.extract_meta_description()
+        )
+
+        features.update(
+            self.extract_headings()
+        )
+
+        features.update(
+            self.extract_content()
+        )
+
+        features.update(
+            self.extract_images()
+        )
+
+        features.update(
+            self.extract_links()
+        )
 
         return features

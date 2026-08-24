@@ -10,8 +10,12 @@ class DatasetStorage:
         self.base_dir = Path(base_dir)
 
         self.raw_dir = self.base_dir / "raw"
-        self.processed_dir = self.base_dir / "processed"
-        self.rejected_dir = self.base_dir / "rejected"
+        self.processed_dir = (
+            self.base_dir / "processed"
+        )
+        self.rejected_dir = (
+            self.base_dir / "rejected"
+        )
 
         self._create_directories()
 
@@ -78,45 +82,62 @@ class DatasetStorage:
         return filepath
 
     def _build_base_row(
-        self,
-        observation: dict,
+    self,
+    observation: dict,
     ) -> dict:
-        """
-        Build the common row structure used by the datasets.
-        """
+        """Build the V3 dataset row."""
 
         return {
-            "crawl_id": observation["crawl_id"],
-            "page_id": observation["page_id"],
-            "crawl_timestamp": observation[
-                "crawl_timestamp"
-            ],
-            "content_hash": observation[
-                "content_hash"
-            ],
-            "url": observation["url"],
-            "domain": observation["domain"],
-            "status_code": observation[
-                "status_code"
-            ],
-            "response_time_ms": observation[
-                "response_time_ms"
-            ],
-            "redirect_count": observation[
-                "redirect_count"
-            ],
-            **observation["features"],
-        }
+        "crawl_id": observation["crawl_id"],
+        "page_id": observation["page_id"],
+        "crawl_timestamp": observation[
+            "crawl_timestamp"
+        ],
+        "content_hash": observation[
+            "content_hash"
+        ],
+        "calibration_group": observation.get(
+            "calibration_group",
+            "unknown",
+        ),
+
+        "crawl_quality": observation.get(
+            "crawl_quality",
+            "NORMAL",
+        ),
+
+        "html_size_bytes": observation.get(
+            "html_size_bytes",
+            0,
+        ),
+
+        "url": observation["url"],
+        "domain": observation["domain"],
+        "status_code": observation[
+            "status_code"
+        ],
+        "response_time_ms": observation[
+            "response_time_ms"
+        ],
+        "redirect_count": observation[
+            "redirect_count"
+        ],
+
+        **observation["features"],
+    }
 
     def is_duplicate(
         self,
         page_id: str,
         content_hash: str,
-        filename: str = "seo_dataset.csv",
+        filename: str = "seo_dataset_v3.csv",
     ) -> bool:
         """
-        Check whether the same page and the same content
-        have already been stored.
+        Check whether the same page state already exists.
+
+        A duplicate requires:
+        - same page_id
+        - same content_hash
         """
 
         filepath = self.processed_dir / filename
@@ -134,7 +155,8 @@ class DatasetStorage:
             for row in reader:
                 if (
                     row.get("page_id") == page_id
-                    and row.get("content_hash") == content_hash
+                    and row.get("content_hash")
+                    == content_hash
                 ):
                     return True
 
@@ -143,18 +165,19 @@ class DatasetStorage:
     def append_processed(
         self,
         observation: dict,
-        filename: str = "seo_dataset.csv",
+        filename: str = "seo_dataset_v3.csv",
     ):
         """
-        Append a validated observation to the processed dataset.
+        Append a validated observation to the V3 dataset.
 
-        Duplicate observations are skipped when the same page_id
-        and content_hash already exist.
+        Duplicate observations are skipped.
         """
 
         if self.is_duplicate(
             page_id=observation["page_id"],
-            content_hash=observation["content_hash"],
+            content_hash=observation[
+                "content_hash"
+            ],
             filename=filename,
         ):
             return None
@@ -190,12 +213,25 @@ class DatasetStorage:
         observation: dict,
         labels: dict,
         aggregation: dict,
-        filename: str = "seo_labeled_dataset.csv",
+        filename: str = (
+            "seo_labeled_dataset_v3.csv"
+        ),
     ):
         """
-        Append a labeled SEO observation to the
-        labeled dataset.
+        Append a labeled observation to the
+        V3 labeled dataset.
+
+        Duplicate observations are skipped.
         """
+
+        if self.is_duplicate(
+            page_id=observation["page_id"],
+            content_hash=observation[
+                "content_hash"
+            ],
+            filename=filename,
+        ):
+            return None
 
         filepath = self.processed_dir / filename
 

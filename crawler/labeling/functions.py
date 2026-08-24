@@ -1,154 +1,180 @@
-from crawler.schemas import SEOFeatures
 from crawler.labeling import SEOClass
+from crawler.schemas import SEOFeatures
 
 
-def label_title(features: SEOFeatures) -> SEOClass:
+def label_title(
+    features: SEOFeatures,
+) -> SEOClass:
     """
-    Evaluate the basic presence and characteristics of the page title.
+    Label the title using basic presence and length signals.
 
-    The current feature set cannot determine whether a title is truly
-    descriptive, unique, relevant, or well-written.
+    Experimental rules:
+    - Missing title -> POOR
+    - Very short title -> POOR
+    - Otherwise -> ABSTAIN
 
-    Rules:
-    - missing title -> POOR
-    - extremely short title -> POOR
-    - very long title -> AVERAGE
-    - otherwise -> AVERAGE
-
-    Title length alone is not considered sufficient to produce GOOD.
+    We do not emit GOOD because the current feature set
+    cannot measure relevance, uniqueness, or search intent.
     """
 
     if not features.title_exists:
         return SEOClass.POOR
 
-    if features.title_length < 10:
+    if features.title_length < 20:
         return SEOClass.POOR
 
-    if features.title_length > 200:
-        return SEOClass.AVERAGE
-
-    return SEOClass.AVERAGE
+    return SEOClass.ABSTAIN
 
 
-def label_meta_description(features: SEOFeatures) -> SEOClass:
+def label_meta_description(
+    features: SEOFeatures,
+) -> SEOClass:
     """
-    Evaluate the presence of a meta description.
+    Label the meta description.
 
-    The current feature set does not allow us to determine whether
-    a meta description is relevant, unique, descriptive, or useful.
-
-    Rules:
-    - missing meta description -> POOR
-    - existing meta description -> AVERAGE
-
-    Length alone is intentionally not sufficient to produce GOOD.
+    Experimental rules:
+    - Missing -> POOR
+    - Very short -> AVERAGE
+    - Very long -> AVERAGE
+    - Otherwise -> ABSTAIN
     """
 
     if not features.meta_description_exists:
         return SEOClass.POOR
 
-    return SEOClass.AVERAGE
+    length = features.meta_description_length
+
+    if length < 70:
+        return SEOClass.AVERAGE
+
+    if length > 200:
+        return SEOClass.AVERAGE
+
+    return SEOClass.ABSTAIN
 
 
-def label_headings(features: SEOFeatures) -> SEOClass:
-    """
-    Evaluate the basic heading structure of the page.
-
-    The current features provide heading counts but do not tell us
-    whether the headings are semantically meaningful or well organized.
-
-    Rules:
-    - no H1 -> POOR
-    - one or more H1 -> AVERAGE
-
-    The function does not produce GOOD from heading counts alone.
-    """
+def label_headings(
+    features: SEOFeatures,
+) -> SEOClass:
 
     if features.h1_count == 0:
         return SEOClass.POOR
 
-    return SEOClass.AVERAGE
+    if features.h1_count > 1:
+        return SEOClass.AVERAGE
 
-
-def label_content(features: SEOFeatures) -> SEOClass:
-    """
-    Evaluate the amount of textual content available on the page.
-
-    Word count alone cannot determine:
-    - content quality
-    - relevance
-    - originality
-    - usefulness
-    - search intent satisfaction
-
-    Therefore:
-    - extremely low content -> POOR
-    - otherwise -> AVERAGE
-
-    No GOOD label is produced from word count alone.
-    """
-
-    if features.word_count < 20:
+    if features.heading_total_count <= 2:
         return SEOClass.POOR
 
-    return SEOClass.AVERAGE
+    return SEOClass.ABSTAIN
 
 
-def label_images(features: SEOFeatures) -> SEOClass:
+def label_content(
+    features: SEOFeatures,
+) -> SEOClass:
     """
-    Evaluate basic image and alt-attribute signals.
+    Label textual content using combined signals.
 
-    The absence of images is not inherently an SEO problem.
+    Experimental rules:
+    - Very low volume -> POOR
+    - Very rich content with sufficient structure
+      and acceptable diversity -> GOOD
+    - Limited/intermediate content with weak structure -> AVERAGE
+    - Otherwise -> ABSTAIN
 
-    Rules:
-    - no images -> ABSTAIN
-    - all images without usable alt attributes -> POOR
-    - some images without usable alt attributes -> AVERAGE
-    - all images have usable alt attributes -> AVERAGE
+    Word count is never used alone as proof of GOOD.
+    """
 
-    Empty alt attributes can be intentional for decorative images,
-    so they are not automatically considered errors.
+    word_count = features.word_count
+    heading_count = features.heading_total_count
+    diversity = features.unique_word_ratio
+
+    if word_count < 300:
+        return SEOClass.POOR
+
+    if (
+        word_count >= 3000
+        and heading_count >= 40
+        and diversity is not None
+        and diversity >= 0.35
+    ):
+        return SEOClass.GOOD
+
+    if (
+        300 <= word_count < 600
+        and heading_count < 10
+    ):
+        return SEOClass.AVERAGE
+
+    return SEOClass.ABSTAIN
+
+
+def label_images(
+    features: SEOFeatures,
+) -> SEOClass:
+    """
+    Label image ALT coverage.
+
+    Experimental rules:
+    - No images -> ABSTAIN
+    - Low ALT coverage -> POOR
+    - High ALT coverage -> GOOD
+    - Intermediate coverage -> AVERAGE
     """
 
     if features.image_count == 0:
         return SEOClass.ABSTAIN
 
-    if features.images_without_alt >= features.image_count:
+    if features.alt_coverage_ratio is None:
+        return SEOClass.ABSTAIN
+
+    coverage = features.alt_coverage_ratio
+
+    if coverage < 0.30:
         return SEOClass.POOR
 
-    if features.images_without_alt > 0:
-        return SEOClass.AVERAGE
+    if coverage >= 0.90:
+        return SEOClass.GOOD
 
     return SEOClass.AVERAGE
 
 
-def label_links(features: SEOFeatures) -> SEOClass:
+def label_links(
+    features: SEOFeatures,
+) -> SEOClass:
     """
-    Evaluate the basic internal-linking signal.
+    Label internal-link structure conservatively.
 
-    Internal link count alone cannot determine whether the site's
-    linking architecture is good.
+    V3.1 deliberately does not emit GOOD.
 
-    Rules:
-    - no internal links -> POOR
-    - internal links exist -> AVERAGE
+    - No internal links -> POOR
+    - Weak internal-link structure -> AVERAGE
+    - Otherwise -> ABSTAIN
 
-    GOOD is intentionally not produced from link count alone.
+    A strong internal-link ratio alone is not evidence
+    of overall SEO quality.
     """
 
     if features.internal_link_count == 0:
         return SEOClass.POOR
 
-    return SEOClass.AVERAGE
+    if (
+        features.internal_link_ratio is not None
+        and features.internal_link_ratio < 0.60
+    ):
+        return SEOClass.AVERAGE
+
+    if features.internal_link_count < 5:
+        return SEOClass.AVERAGE
+
+    return SEOClass.ABSTAIN
 
 
 def run_all_labeling_functions(
     features: SEOFeatures,
 ) -> dict[str, SEOClass]:
     """
-    Run all Trafiq AI labeling functions.
-
-    Returns the individual votes without performing aggregation.
+    Run all SEO labeling functions.
     """
 
     return {
