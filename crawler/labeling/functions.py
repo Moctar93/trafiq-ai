@@ -6,15 +6,9 @@ def label_title(
     features: SEOFeatures,
 ) -> SEOClass:
     """
-    Label the title using basic presence and length signals.
+    Evaluate title quality as a negative signal.
 
-    Experimental rules:
-    - Missing title -> POOR
-    - Very short title -> POOR
-    - Otherwise -> ABSTAIN
-
-    We do not emit GOOD because the current feature set
-    cannot measure relevance, uniqueness, or search intent.
+    TITLE never produces GOOD.
     """
 
     if not features.title_exists:
@@ -30,13 +24,9 @@ def label_meta_description(
     features: SEOFeatures,
 ) -> SEOClass:
     """
-    Label the meta description.
+    Evaluate meta-description quality.
 
-    Experimental rules:
-    - Missing -> POOR
-    - Very short -> AVERAGE
-    - Very long -> AVERAGE
-    - Otherwise -> ABSTAIN
+    META never produces GOOD.
     """
 
     if not features.meta_description_exists:
@@ -45,7 +35,7 @@ def label_meta_description(
     length = features.meta_description_length
 
     if length < 70:
-        return SEOClass.AVERAGE
+        return SEOClass.POOR
 
     if length > 200:
         return SEOClass.AVERAGE
@@ -56,6 +46,11 @@ def label_meta_description(
 def label_headings(
     features: SEOFeatures,
 ) -> SEOClass:
+    """
+    Evaluate heading structure conservatively.
+
+    HEADINGS never produces GOOD.
+    """
 
     if features.h1_count == 0:
         return SEOClass.POOR
@@ -73,16 +68,10 @@ def label_content(
     features: SEOFeatures,
 ) -> SEOClass:
     """
-    Label textual content using combined signals.
+    Evaluate content depth.
 
-    Experimental rules:
-    - Very low volume -> POOR
-    - Very rich content with sufficient structure
-      and acceptable diversity -> GOOD
-    - Limited/intermediate content with weak structure -> AVERAGE
-    - Otherwise -> ABSTAIN
-
-    Word count is never used alone as proof of GOOD.
+    Content is one of the few dimensions allowed
+    to provide a positive signal.
     """
 
     word_count = features.word_count
@@ -113,13 +102,11 @@ def label_images(
     features: SEOFeatures,
 ) -> SEOClass:
     """
-    Label image ALT coverage.
+    Evaluate image ALT coverage only.
 
-    Experimental rules:
-    - No images -> ABSTAIN
-    - Low ALT coverage -> POOR
-    - High ALT coverage -> GOOD
-    - Intermediate coverage -> AVERAGE
+    A good image score is intentionally not emitted
+    as GOOD because image optimization alone is not
+    sufficient to establish overall SEO quality.
     """
 
     if features.image_count == 0:
@@ -133,26 +120,19 @@ def label_images(
     if coverage < 0.30:
         return SEOClass.POOR
 
-    if coverage >= 0.90:
-        return SEOClass.GOOD
+    if coverage < 0.70:
+        return SEOClass.AVERAGE
 
-    return SEOClass.AVERAGE
+    return SEOClass.ABSTAIN
 
 
 def label_links(
     features: SEOFeatures,
 ) -> SEOClass:
     """
-    Label internal-link structure conservatively.
+    Evaluate internal-link structure conservatively.
 
-    V3.1 deliberately does not emit GOOD.
-
-    - No internal links -> POOR
-    - Weak internal-link structure -> AVERAGE
-    - Otherwise -> ABSTAIN
-
-    A strong internal-link ratio alone is not evidence
-    of overall SEO quality.
+    LINKS never produces GOOD.
     """
 
     if features.internal_link_count == 0:
