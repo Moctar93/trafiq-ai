@@ -2,7 +2,7 @@ from crawler.pipeline import SEOPipeline
 
 
 TEST_URLS = [
-    "https://www.decathlon.fr/",
+    "https://www.essence-resilience.coach/",
     "https://www.lemonde.fr/",
     "https://www.abondance.com/",
 ]

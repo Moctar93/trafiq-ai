@@ -1,0 +1,190 @@
+{
+  "dataset": "data\\processed\\seo_training_dataset_v2.csv",
+  "rows": 14,
+  "feature_count": 40,
+  "class_distribution": {
+    "POOR": 5,
+    "AVERAGE": 7,
+    "GOOD": 2
+  },
+  "constant_features": [
+    "title_exists",
+    "sponsored_link_count",
+    "ugc_link_count",
+    "viewport_exists",
+    "lang_exists",
+    "jsonld_count",
+    "schema_org_count"
+  ],
+  "top_random_forest_features": [
+    {
+      "feature": "internal_link_count",
+      "random_forest_importance": 0.1049471443579281
+    },
+    {
+      "feature": "total_link_count",
+      "random_forest_importance": 0.10138105255815934
+    },
+    {
+      "feature": "images_with_alt",
+      "random_forest_importance": 0.06144294792895784
+    },
+    {
+      "feature": "meta_description_word_count",
+      "random_forest_importance": 0.05631819169674523
+    },
+    {
+      "feature": "external_link_count",
+      "random_forest_importance": 0.04548213919805862
+    },
+    {
+      "feature": "meta_description_length",
+      "random_forest_importance": 0.04542311176993959
+    },
+    {
+      "feature": "title_length",
+      "random_forest_importance": 0.04366506860483364
+    },
+    {
+      "feature": "word_count",
+      "random_forest_importance": 0.042942338989307154
+    },
+    {
+      "feature": "unique_word_ratio",
+      "random_forest_importance": 0.039729938676392414
+    },
+    {
+      "feature": "unique_word_count",
+      "random_forest_importance": 0.037263641103583975
+    },
+    {
+      "feature": "alt_coverage_ratio",
+      "random_forest_importance": 0.03663350251687273
+    },
+    {
+      "feature": "external_unique_domain_count",
+      "random_forest_importance": 0.03172486088552491
+    },
+    {
+      "feature": "internal_link_ratio",
+      "random_forest_importance": 0.031008797017129164
+    },
+    {
+      "feature": "title_word_count",
+      "random_forest_importance": 0.030056438943546003
+    },
+    {
+      "feature": "heading_total_count",
+      "random_forest_importance": 0.029254023518283226
+    }
+  ],
+  "top_logistic_features": [
+    {
+      "feature": "phone_count",
+      "logistic_abs_mean_coefficient": 0.34968408314171545,
+      "logistic_coefficient_AVERAGE": -0.33286203617914023,
+      "logistic_coefficient_GOOD": 0.5245261247125732,
+      "logistic_coefficient_POOR": -0.19166408853343306
+    },
+    {
+      "feature": "h4_count",
+      "logistic_abs_mean_coefficient": 0.3091586849594874,
+      "logistic_coefficient_AVERAGE": 0.4637380274392312,
+      "logistic_coefficient_GOOD": -0.15185327102063556,
+      "logistic_coefficient_POOR": -0.3118847564185953
+    },
+    {
+      "feature": "meta_description_exists",
+      "logistic_abs_mean_coefficient": 0.2681732655974987,
+      "logistic_coefficient_AVERAGE": 0.36223885496731123,
+      "logistic_coefficient_GOOD": 0.04002104342893676,
+      "logistic_coefficient_POOR": -0.4022598983962481
+    },
+    {
+      "feature": "email_count",
+      "logistic_abs_mean_coefficient": 0.258162972950732,
+      "logistic_coefficient_AVERAGE": -0.38724445942609786,
+      "logistic_coefficient_GOOD": 0.2646761158864696,
+      "logistic_coefficient_POOR": 0.12256834353962852
+    },
+    {
+      "feature": "internal_link_count",
+      "logistic_abs_mean_coefficient": 0.255354025854672,
+      "logistic_coefficient_AVERAGE": -0.07479244656006549,
+      "logistic_coefficient_GOOD": 0.3830310387820078,
+      "logistic_coefficient_POOR": -0.30823859222194266
+    },
+    {
+      "feature": "total_link_count",
+      "logistic_abs_mean_coefficient": 0.2542504567493265,
+      "logistic_coefficient_AVERAGE": -0.07811564138527634,
+      "logistic_coefficient_GOOD": 0.3813756851239895,
+      "logistic_coefficient_POOR": -0.3032600437387136
+    },
+    {
+      "feature": "unique_word_ratio",
+      "logistic_abs_mean_coefficient": 0.21082501563736042,
+      "logistic_coefficient_AVERAGE": -0.17297727441396826,
+      "logistic_coefficient_GOOD": -0.1432602490420722,
+      "logistic_coefficient_POOR": 0.3162375234560407
+    },
+    {
+      "feature": "h1_count",
+      "logistic_abs_mean_coefficient": 0.2011757860581469,
+      "logistic_coefficient_AVERAGE": 0.012775062287204436,
+      "logistic_coefficient_GOOD": -0.3017636790872203,
+      "logistic_coefficient_POOR": 0.288988616800016
+    },
+    {
+      "feature": "robots_meta_exists",
+      "logistic_abs_mean_coefficient": 0.186620711082387,
+      "logistic_coefficient_AVERAGE": -0.10121581489881595,
+      "logistic_coefficient_GOOD": 0.2799310666235805,
+      "logistic_coefficient_POOR": -0.17871525172476455
+    },
+    {
+      "feature": "h6_count",
+      "logistic_abs_mean_coefficient": 0.16386450929188212,
+      "logistic_coefficient_AVERAGE": -0.24579676393782324,
+      "logistic_coefficient_GOOD": 0.1032390816108854,
+      "logistic_coefficient_POOR": 0.1425576823269377
+    },
+    {
+      "feature": "external_unique_domain_count",
+      "logistic_abs_mean_coefficient": 0.16107141909772685,
+      "logistic_coefficient_AVERAGE": 0.24160712864659023,
+      "logistic_coefficient_GOOD": -0.1674168898589572,
+      "logistic_coefficient_POOR": -0.07419023878763308
+    },
+    {
+      "feature": "images_without_alt",
+      "logistic_abs_mean_coefficient": 0.1541148585352491,
+      "logistic_coefficient_AVERAGE": -0.16880326260149037,
+      "logistic_coefficient_GOOD": -0.06236902520138326,
+      "logistic_coefficient_POOR": 0.23117228780287363
+    },
+    {
+      "feature": "images_missing_alt_attribute",
+      "logistic_abs_mean_coefficient": 0.1541148585352491,
+      "logistic_coefficient_AVERAGE": -0.16880326260149037,
+      "logistic_coefficient_GOOD": -0.06236902520138326,
+      "logistic_coefficient_POOR": 0.23117228780287363
+    },
+    {
+      "feature": "title_length",
+      "logistic_abs_mean_coefficient": 0.15335220912912917,
+      "logistic_coefficient_AVERAGE": 0.170600705546939,
+      "logistic_coefficient_GOOD": 0.059427608146754705,
+      "logistic_coefficient_POOR": -0.23002831369369375
+    },
+    {
+      "feature": "meta_description_length",
+      "logistic_abs_mean_coefficient": 0.13864991806865723,
+      "logistic_coefficient_AVERAGE": 0.15875890039768725,
+      "logistic_coefficient_GOOD": 0.049215976705298654,
+      "logistic_coefficient_POOR": -0.2079748771029858
+    }
+  ],
+  "warnings": [],
+  "methodological_note": "Full-dataset feature importance is descriptive only because the current human-reviewed dataset contains only 14 observations."
+}

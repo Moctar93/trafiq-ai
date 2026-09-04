@@ -1,0 +1,44 @@
+{
+  "success": true,
+  "url": "https://essence-resilience.coach/",
+  "domain": "essence-resilience.coach",
+  "crawl_quality": "NORMAL",
+  "crawl_id": "crawl_20260903125905_939768",
+  "crawl_timestamp": "2026-09-03T12:59:05.939756+00:00",
+  "status_code": 200,
+  "response_time_ms": 2282.38,
+  "redirect_count": 0,
+  "html_size_bytes": 100112,
+  "feature_count": 40,
+  "prediction": "AVERAGE",
+  "confidence": 0.82,
+  "confidence_interpretation": "Maximum class probability returned by the Random Forest. It is kept as-is for the current demo and is not a calibrated probability of correctness.",
+  "class_probabilities": {
+    "AVERAGE": 0.82,
+    "GOOD": 0.04,
+    "POOR": 0.14
+  },
+  "recommendation_count": 2,
+  "recommendations": [
+    {
+      "category": "technical_seo",
+      "severity": "LOW",
+      "feature": "title_length",
+      "observed_value": 78.0,
+      "threshold": "<= 65",
+      "title": "Raccourcir le title",
+      "recommendation": "Réduire le title pour conserver l'information essentielle dans un intitulé plus concis.",
+      "explanation": "Le title contient environ 78 caractères et peut être trop long."
+    },
+    {
+      "category": "images",
+      "severity": "MEDIUM",
+      "feature": "alt_coverage_ratio",
+      "observed_value": 0.375,
+      "threshold": ">= 0.70",
+      "title": "Améliorer les attributs ALT",
+      "recommendation": "Ajouter des attributs ALT descriptifs aux images pertinentes et éviter les ALT vides lorsqu'ils ne sont pas justifiés.",
+      "explanation": "La couverture ALT est d'environ 37.5%."
+    }
+  ]
+}

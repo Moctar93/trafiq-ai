@@ -1,0 +1,234 @@
+{
+  "dataset_path": "data\\processed\\seo_training_dataset_v2.csv",
+  "rows": 14,
+  "feature_count": 40,
+  "features": [
+    "title_exists",
+    "title_length",
+    "title_word_count",
+    "meta_description_exists",
+    "meta_description_length",
+    "meta_description_word_count",
+    "h1_count",
+    "h2_count",
+    "h3_count",
+    "h4_count",
+    "h5_count",
+    "h6_count",
+    "heading_total_count",
+    "word_count",
+    "character_count",
+    "unique_word_count",
+    "unique_word_ratio",
+    "image_count",
+    "images_with_alt",
+    "images_without_alt",
+    "images_missing_alt_attribute",
+    "empty_alt_count",
+    "alt_coverage_ratio",
+    "total_link_count",
+    "internal_link_count",
+    "external_link_count",
+    "nofollow_link_count",
+    "sponsored_link_count",
+    "ugc_link_count",
+    "internal_link_ratio",
+    "canonical_exists",
+    "robots_meta_exists",
+    "viewport_exists",
+    "lang_exists",
+    "jsonld_count",
+    "schema_org_count",
+    "cta_count",
+    "phone_count",
+    "email_count",
+    "external_unique_domain_count"
+  ],
+  "class_distribution": {
+    "AVERAGE": 7,
+    "POOR": 5,
+    "GOOD": 2
+  },
+  "cv": {
+    "type": "StratifiedKFold",
+    "n_splits": 2,
+    "random_state": 42
+  },
+  "models": {
+    "logistic_regression": {
+      "oof_predictions": [
+        "AVERAGE",
+        "POOR",
+        "AVERAGE",
+        "POOR",
+        "AVERAGE",
+        "AVERAGE",
+        "POOR",
+        "AVERAGE",
+        "AVERAGE",
+        "AVERAGE",
+        "GOOD",
+        "AVERAGE",
+        "GOOD",
+        "AVERAGE"
+      ],
+      "folds": [
+        {
+          "fold": 1,
+          "accuracy": 0.2857142857142857,
+          "macro_f1": 0.22857142857142856
+        },
+        {
+          "fold": 2,
+          "accuracy": 0.2857142857142857,
+          "macro_f1": 0.14814814814814814
+        }
+      ],
+      "accuracy": 0.2857142857142857,
+      "macro_f1": 0.20833333333333334,
+      "labels": [
+        "POOR",
+        "AVERAGE",
+        "GOOD"
+      ],
+      "confusion_matrix": [
+        [
+          1,
+          4,
+          0
+        ],
+        [
+          2,
+          3,
+          2
+        ],
+        [
+          0,
+          2,
+          0
+        ]
+      ],
+      "classification_report": {
+        "POOR": {
+          "precision": 0.3333333333333333,
+          "recall": 0.2,
+          "f1-score": 0.25,
+          "support": 5.0
+        },
+        "AVERAGE": {
+          "precision": 0.3333333333333333,
+          "recall": 0.42857142857142855,
+          "f1-score": 0.375,
+          "support": 7.0
+        },
+        "GOOD": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1-score": 0.0,
+          "support": 2.0
+        },
+        "accuracy": 0.2857142857142857,
+        "macro avg": {
+          "precision": 0.2222222222222222,
+          "recall": 0.20952380952380953,
+          "f1-score": 0.20833333333333334,
+          "support": 14.0
+        },
+        "weighted avg": {
+          "precision": 0.2857142857142857,
+          "recall": 0.2857142857142857,
+          "f1-score": 0.2767857142857143,
+          "support": 14.0
+        }
+      }
+    },
+    "random_forest": {
+      "oof_predictions": [
+        "AVERAGE",
+        "POOR",
+        "AVERAGE",
+        "POOR",
+        "AVERAGE",
+        "AVERAGE",
+        "POOR",
+        "AVERAGE",
+        "AVERAGE",
+        "AVERAGE",
+        "GOOD",
+        "AVERAGE",
+        "GOOD",
+        "AVERAGE"
+      ],
+      "folds": [
+        {
+          "fold": 1,
+          "accuracy": 0.2857142857142857,
+          "macro_f1": 0.22857142857142856
+        },
+        {
+          "fold": 2,
+          "accuracy": 0.2857142857142857,
+          "macro_f1": 0.14814814814814814
+        }
+      ],
+      "accuracy": 0.2857142857142857,
+      "macro_f1": 0.20833333333333334,
+      "labels": [
+        "POOR",
+        "AVERAGE",
+        "GOOD"
+      ],
+      "confusion_matrix": [
+        [
+          1,
+          4,
+          0
+        ],
+        [
+          2,
+          3,
+          2
+        ],
+        [
+          0,
+          2,
+          0
+        ]
+      ],
+      "classification_report": {
+        "POOR": {
+          "precision": 0.3333333333333333,
+          "recall": 0.2,
+          "f1-score": 0.25,
+          "support": 5.0
+        },
+        "AVERAGE": {
+          "precision": 0.3333333333333333,
+          "recall": 0.42857142857142855,
+          "f1-score": 0.375,
+          "support": 7.0
+        },
+        "GOOD": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1-score": 0.0,
+          "support": 2.0
+        },
+        "accuracy": 0.2857142857142857,
+        "macro avg": {
+          "precision": 0.2222222222222222,
+          "recall": 0.20952380952380953,
+          "f1-score": 0.20833333333333334,
+          "support": 14.0
+        },
+        "weighted avg": {
+          "precision": 0.2857142857142857,
+          "recall": 0.2857142857142857,
+          "f1-score": 0.2767857142857143,
+          "support": 14.0
+        }
+      }
+    }
+  },
+  "warnings": []
+}

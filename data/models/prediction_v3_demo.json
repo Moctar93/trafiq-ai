@@ -1,0 +1,37 @@
+{
+  "url": "https://essence-resilience.coach/",
+  "domain": "essence-resilience.coach",
+  "prediction": "AVERAGE",
+  "confidence": 0.82,
+  "confidence_interpretation": "Maximum class probability returned by the Random Forest; not a calibrated probability of correctness.",
+  "class_probabilities": {
+    "AVERAGE": 0.82,
+    "GOOD": 0.04,
+    "POOR": 0.14
+  },
+  "recommendation_count": 2,
+  "recommendations": [
+    {
+      "category": "technical_seo",
+      "severity": "LOW",
+      "feature": "title_length",
+      "observed_value": 78.0,
+      "threshold": "<= 65",
+      "title": "Raccourcir le title",
+      "recommendation": "Réduire le title pour conserver l'information essentielle dans un intitulé plus concis.",
+      "explanation": "Le title contient environ 78 caractères et peut être trop long."
+    },
+    {
+      "category": "images",
+      "severity": "MEDIUM",
+      "feature": "alt_coverage_ratio",
+      "observed_value": 0.375,
+      "threshold": ">= 0.70",
+      "title": "Améliorer les attributs ALT",
+      "recommendation": "Ajouter des attributs ALT descriptifs aux images pertinentes et éviter les ALT vides lorsqu'ils ne sont pas justifiés.",
+      "explanation": "La couverture ALT est d'environ 37.5%."
+    }
+  ],
+  "reference_consensus_label": "AVERAGE",
+  "reference_consensus_strength": 1.0
+}

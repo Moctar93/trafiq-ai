@@ -1,0 +1,16 @@
+url,domain,consensus_label,consensus_strength,human_disagreement,logistic_regression_prediction,random_forest_prediction,logistic_regression_correct,random_forest_correct
+https://essence-resilience.coach/,essence-resilience.coach,AVERAGE,1.0,False,POOR,POOR,False,False
+https://jespomi.com/,jespomi.com,GOOD,0.6666666666666666,True,AVERAGE,AVERAGE,False,False
+https://trafiq.fr/,trafiq.fr,POOR,0.6666666666666666,True,AVERAGE,AVERAGE,False,False
+https://nkongsambapeguanto.ltd/,nkongsambapeguanto.ltd,POOR,0.6666666666666666,True,GOOD,POOR,False,True
+https://depannage-rideaux-metalliques.fr/,depannage-rideaux-metalliques.fr,GOOD,1.0,False,AVERAGE,AVERAGE,False,False
+https://cabinet-3c.com/,cabinet-3c.com,AVERAGE,0.6666666666666666,True,AVERAGE,AVERAGE,True,True
+https://if-ca.fr/,if-ca.fr,AVERAGE,0.6666666666666666,True,GOOD,POOR,False,False
+https://ada13.org/,ada13.org,AVERAGE,1.0,False,POOR,AVERAGE,False,True
+https://toulemondencuisine.wordpress.com/,toulemondencuisine.wordpress.com,POOR,0.6666666666666666,True,AVERAGE,AVERAGE,False,False
+https://jeanleptitplombier.com/,jeanleptitplombier.com,AVERAGE,0.6666666666666666,True,AVERAGE,POOR,True,False
+https://a-un-clic-de-vous.fr/site-vitrine/trelaze/49800,a-un-clic-de-vous.fr,POOR,0.6666666666666666,True,GOOD,AVERAGE,False,False
+https://www.arret-net.fr/,www.arret-net.fr,AVERAGE,0.6666666666666666,True,GOOD,GOOD,False,False
+https://www.lageneraledetheatre.com/,www.lageneraledetheatre.com,POOR,0.6666666666666666,True,AVERAGE,AVERAGE,False,False
+https://l-artisanat-a-la-francaise.fr/,l-artisanat-a-la-francaise.fr,GOOD,0.6666666666666666,True,GOOD,AVERAGE,True,False
+https://www.abondance.com/,www.abondance.com,GOOD,1.0,False,GOOD,GOOD,True,True
