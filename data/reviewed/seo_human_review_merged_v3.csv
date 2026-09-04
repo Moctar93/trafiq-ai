@@ -1,0 +1,16 @@
+url,annotator_1,annotator_2,annotator_3,good_votes,average_votes,poor_votes,consensus_label,consensus_strength,human_disagreement,annotator_count
+https://essence-resilience.coach/,AVERAGE,AVERAGE,AVERAGE,0,3,0,AVERAGE,1.0,False,3
+https://jespomi.com/,AVERAGE,GOOD,GOOD,2,1,0,GOOD,0.6666666666666666,True,3
+https://trafiq.fr/,POOR,POOR,GOOD,1,0,2,POOR,0.6666666666666666,True,3
+https://nkongsambapeguanto.ltd/,POOR,GOOD,POOR,1,0,2,POOR,0.6666666666666666,True,3
+https://depannage-rideaux-metalliques.fr/,GOOD,GOOD,GOOD,3,0,0,GOOD,1.0,False,3
+https://cabinet-3c.com/,AVERAGE,AVERAGE,GOOD,1,2,0,AVERAGE,0.6666666666666666,True,3
+https://if-ca.fr/,AVERAGE,AVERAGE,GOOD,1,2,0,AVERAGE,0.6666666666666666,True,3
+https://ada13.org/,AVERAGE,AVERAGE,AVERAGE,0,3,0,AVERAGE,1.0,False,3
+https://toulemondencuisine.wordpress.com/,AVERAGE,POOR,POOR,0,1,2,POOR,0.6666666666666666,True,3
+https://jeanleptitplombier.com/,POOR,AVERAGE,AVERAGE,0,2,1,AVERAGE,0.6666666666666666,True,3
+https://a-un-clic-de-vous.fr/site-vitrine/trelaze/49800,POOR,GOOD,POOR,1,0,2,POOR,0.6666666666666666,True,3
+https://www.arret-net.fr/,AVERAGE,AVERAGE,GOOD,1,2,0,AVERAGE,0.6666666666666666,True,3
+https://www.lageneraledetheatre.com/,POOR,POOR,GOOD,1,0,2,POOR,0.6666666666666666,True,3
+https://l-artisanat-a-la-francaise.fr/,AVERAGE,GOOD,GOOD,2,1,0,GOOD,0.6666666666666666,True,3
+https://www.abondance.com/,GOOD,GOOD,GOOD,3,0,0,GOOD,1.0,False,3

@@ -1,0 +1,16 @@
+﻿page_id,url,domain,calibration_group,crawl_quality,human_review_label,review_notes,reviewed_at,reviewer
+c8c5f59fd0c4204f,https://essence-resilience.coach/,essence-resilience.coach,known_edited,NORMAL,AVERAGE,Absence des backlinks qui fait que la note n'est pas Good,2026-08-27T23:30:00+02:00,human_2
+7abf88539eb352b9,https://jespomi.com/,jespomi.com,known_edited,NORMAL,GOOD,"Design et UX agréable, contenu et position cohérent même s'il manque de backlink consistant",2026-08-27T23:30:00+02:00,human_2
+1e8705bd153e0983,https://trafiq.fr/,trafiq.fr,known_edited,NORMAL,POOR,"Malgré un bon design et cohérence de l'offre, il manque beaucoup de données pourtant primordiales en SEO : blogs, avis clients vérifiables, backlinks, meta description...",2026-08-27T23:30:00+02:00,human_2
+fe380355d18d93ad,https://nkongsambapeguanto.ltd/,nkongsambapeguanto.ltd,known_edited,NORMAL,GOOD,Le site est bien fourni,2026-08-27T23:30:00+02:00,human_2
+05eacfbd8fe37901,https://depannage-rideaux-metalliques.fr/,depannage-rideaux-metalliques.fr,known_edited,NORMAL,GOOD,Bon site bien fourni et cohérent même si les activités secondaires (vitreries et autres) sont moins optimisées,2026-08-27T23:30:00+02:00,human_2
+a19ea853b117d2b3,https://cabinet-3c.com/,cabinet-3c.com,known_edited,NORMAL,AVERAGE,"Site bien, manque backlink et moins fourni en avis client",2026-08-27T23:30:00+02:00,human_2
+b3530bf019393c8c,https://if-ca.fr/,if-ca.fr,known_edited,NORMAL,AVERAGE,"Absence de backlink, page locale, page secondaire...",2026-08-27T23:30:00+02:00,human_2
+ceda02553633033c,https://ada13.org/,ada13.org,poor_candidate,NORMAL,AVERAGE,Page d'accueil pauvre,2026-08-27T23:30:00+02:00,human_2
+4b1e290b60ab4f49,https://toulemondencuisine.wordpress.com/,toulemondencuisine.wordpress.com,poor_candidate,NORMAL,POOR,Site inexistant,2026-08-27T23:30:00+02:00,human_2
+5f96cef86c9446d5,https://jeanleptitplombier.com/,jeanleptitplombier.com,poor_candidate,NORMAL,AVERAGE,"Jolie site cependant manque d'avis client, blogs, page locale...",2026-08-27T23:30:00+02:00,human_2
+71c4befd228bbffb,https://a-un-clic-de-vous.fr/site-vitrine/trelaze/49800,a-un-clic-de-vous.fr,poor_candidate,NORMAL,GOOD,"Très jolie site, cependant absence de blogs, manque de CTA sur le hero banner",2026-08-27T23:30:00+02:00,human_2
+344d09fda0421a3b,https://www.arret-net.fr/,www.arret-net.fr,poor_candidate,NORMAL,AVERAGE,"Bon site mais le design est vieux et dépassé, pour quelqu'un qui crée des sites ça n'inspire pas confiance",2026-08-28T10:00:00+02:00,human_2
+5a83d553c1953bee,https://www.lageneraledetheatre.com/,www.lageneraledetheatre.com,intermediate_candidate,NORMAL,POOR,SEO faible voire inexistant,2026-08-28T10:00:00+02:00,human_2
+c03d781fcd9467ee,https://l-artisanat-a-la-francaise.fr/,l-artisanat-a-la-francaise.fr,intermediate_candidate,NORMAL,GOOD,"Site à fort potentiel, manque un blog et des avis clients venant directement de Google Maps",2026-08-28T10:00:00+02:00,human_2
+7d20958e98ee023b,https://www.abondance.com/,www.abondance.com,rich_candidate,NORMAL,GOOD,Très bon site,2026-08-28T10:00:00+02:00,human_2

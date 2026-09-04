@@ -1,0 +1,491 @@
+{
+  "dataset": "C:\\Users\\fifi1234\\Desktop\\Tafiq AI Project\\trafiq-ai\\data\\processed\\seo_training_dataset_v3.csv",
+  "rows": 15,
+  "feature_count": 40,
+  "labels": [
+    "POOR",
+    "AVERAGE",
+    "GOOD"
+  ],
+  "class_distribution": {
+    "POOR": 5,
+    "AVERAGE": 6,
+    "GOOD": 4
+  },
+  "constant_features": [
+    "title_exists",
+    "sponsored_link_count",
+    "ugc_link_count",
+    "viewport_exists",
+    "lang_exists",
+    "jsonld_count",
+    "schema_org_count"
+  ],
+  "warning": "Feature importance is exploratory because the dataset contains only 15 observations. It must not be interpreted as a stable estimate of real-world feature impact.",
+  "top_random_forest_features": [
+    {
+      "feature": "images_with_alt",
+      "importance": 0.09746289574103105
+    },
+    {
+      "feature": "internal_link_count",
+      "importance": 0.0801500102679457
+    },
+    {
+      "feature": "meta_description_word_count",
+      "importance": 0.0712757981096175
+    },
+    {
+      "feature": "image_count",
+      "importance": 0.06034810878706116
+    },
+    {
+      "feature": "internal_link_ratio",
+      "importance": 0.05963069019025688
+    },
+    {
+      "feature": "meta_description_length",
+      "importance": 0.05500684340329738
+    },
+    {
+      "feature": "total_link_count",
+      "importance": 0.053047847675105536
+    },
+    {
+      "feature": "alt_coverage_ratio",
+      "importance": 0.04229573586107765
+    },
+    {
+      "feature": "heading_total_count",
+      "importance": 0.03980383914124039
+    },
+    {
+      "feature": "external_unique_domain_count",
+      "importance": 0.03716878194172861
+    },
+    {
+      "feature": "title_word_count",
+      "importance": 0.03536231338484982
+    },
+    {
+      "feature": "external_link_count",
+      "importance": 0.032818185541125734
+    },
+    {
+      "feature": "cta_count",
+      "importance": 0.03196801219911453
+    },
+    {
+      "feature": "h3_count",
+      "importance": 0.031496584308180316
+    },
+    {
+      "feature": "h2_count",
+      "importance": 0.03045926703797427
+    },
+    {
+      "feature": "empty_alt_count",
+      "importance": 0.02973155197103059
+    },
+    {
+      "feature": "unique_word_ratio",
+      "importance": 0.02876170736010287
+    },
+    {
+      "feature": "unique_word_count",
+      "importance": 0.027473560856633654
+    },
+    {
+      "feature": "phone_count",
+      "importance": 0.024599326777866113
+    },
+    {
+      "feature": "word_count",
+      "importance": 0.020376842447843047
+    }
+  ],
+  "top_permutation_features": [
+    {
+      "feature": "images_with_alt",
+      "importance_mean": 0.0,
+      "importance_std": 0.0
+    },
+    {
+      "feature": "internal_link_count",
+      "importance_mean": 0.0,
+      "importance_std": 0.0
+    },
+    {
+      "feature": "meta_description_word_count",
+      "importance_mean": 0.0,
+      "importance_std": 0.0
+    },
+    {
+      "feature": "image_count",
+      "importance_mean": 0.0,
+      "importance_std": 0.0
+    },
+    {
+      "feature": "internal_link_ratio",
+      "importance_mean": 0.0,
+      "importance_std": 0.0
+    },
+    {
+      "feature": "meta_description_length",
+      "importance_mean": 0.0,
+      "importance_std": 0.0
+    },
+    {
+      "feature": "total_link_count",
+      "importance_mean": 0.0,
+      "importance_std": 0.0
+    },
+    {
+      "feature": "alt_coverage_ratio",
+      "importance_mean": 0.0,
+      "importance_std": 0.0
+    },
+    {
+      "feature": "heading_total_count",
+      "importance_mean": 0.0,
+      "importance_std": 0.0
+    },
+    {
+      "feature": "external_unique_domain_count",
+      "importance_mean": 0.0,
+      "importance_std": 0.0
+    },
+    {
+      "feature": "title_word_count",
+      "importance_mean": 0.0,
+      "importance_std": 0.0
+    },
+    {
+      "feature": "external_link_count",
+      "importance_mean": 0.0,
+      "importance_std": 0.0
+    },
+    {
+      "feature": "cta_count",
+      "importance_mean": 0.0,
+      "importance_std": 0.0
+    },
+    {
+      "feature": "h3_count",
+      "importance_mean": 0.0,
+      "importance_std": 0.0
+    },
+    {
+      "feature": "h2_count",
+      "importance_mean": 0.0,
+      "importance_std": 0.0
+    },
+    {
+      "feature": "empty_alt_count",
+      "importance_mean": 0.0,
+      "importance_std": 0.0
+    },
+    {
+      "feature": "unique_word_ratio",
+      "importance_mean": 0.0,
+      "importance_std": 0.0
+    },
+    {
+      "feature": "unique_word_count",
+      "importance_mean": 0.0,
+      "importance_std": 0.0
+    },
+    {
+      "feature": "phone_count",
+      "importance_mean": 0.0,
+      "importance_std": 0.0
+    },
+    {
+      "feature": "word_count",
+      "importance_mean": 0.0,
+      "importance_std": 0.0
+    }
+  ],
+  "feature_statistics": {
+    "title_exists": {
+      "min": 1.0,
+      "max": 1.0,
+      "mean": 1.0,
+      "std": 0.0,
+      "unique_values": 1
+    },
+    "title_length": {
+      "min": 14.0,
+      "max": 91.0,
+      "mean": 50.666666666666664,
+      "std": 23.199616855073756,
+      "unique_values": 14
+    },
+    "title_word_count": {
+      "min": 3.0,
+      "max": 17.0,
+      "mean": 8.133333333333333,
+      "std": 3.667272677193351,
+      "unique_values": 9
+    },
+    "meta_description_exists": {
+      "min": 0.0,
+      "max": 1.0,
+      "mean": 0.8,
+      "std": 0.4000000000000001,
+      "unique_values": 2
+    },
+    "meta_description_length": {
+      "min": 0.0,
+      "max": 340.0,
+      "mean": 105.53333333333333,
+      "std": 90.92624605812242,
+      "unique_values": 13
+    },
+    "meta_description_word_count": {
+      "min": 0.0,
+      "max": 55.0,
+      "mean": 15.733333333333333,
+      "std": 14.233606554754687,
+      "unique_values": 10
+    },
+    "h1_count": {
+      "min": 0.0,
+      "max": 2.0,
+      "mean": 1.1333333333333333,
+      "std": 0.4988876515698589,
+      "unique_values": 3
+    },
+    "h2_count": {
+      "min": 0.0,
+      "max": 47.0,
+      "mean": 14.6,
+      "std": 12.4942653512188,
+      "unique_values": 11
+    },
+    "h3_count": {
+      "min": 0.0,
+      "max": 41.0,
+      "mean": 9.866666666666667,
+      "std": 12.955650847753226,
+      "unique_values": 10
+    },
+    "h4_count": {
+      "min": 0.0,
+      "max": 7.0,
+      "mean": 1.1333333333333333,
+      "std": 2.186829262247564,
+      "unique_values": 5
+    },
+    "h5_count": {
+      "min": 0.0,
+      "max": 6.0,
+      "mean": 0.4666666666666667,
+      "std": 1.4996295838935987,
+      "unique_values": 3
+    },
+    "h6_count": {
+      "min": 0.0,
+      "max": 7.0,
+      "mean": 0.7333333333333333,
+      "std": 1.8061622912192088,
+      "unique_values": 3
+    },
+    "heading_total_count": {
+      "min": 2.0,
+      "max": 79.0,
+      "mean": 27.933333333333334,
+      "std": 20.10461527996881,
+      "unique_values": 14
+    },
+    "word_count": {
+      "min": 220.0,
+      "max": 5237.0,
+      "mean": 1516.4666666666667,
+      "std": 1527.095712637409,
+      "unique_values": 15
+    },
+    "character_count": {
+      "min": 1324.0,
+      "max": 33585.0,
+      "mean": 9639.733333333334,
+      "std": 9519.963245493942,
+      "unique_values": 15
+    },
+    "unique_word_count": {
+      "min": 144.0,
+      "max": 1634.0,
+      "mean": 564.2666666666667,
+      "std": 427.56870273156756,
+      "unique_values": 15
+    },
+    "unique_word_ratio": {
+      "min": 0.2890015600624025,
+      "max": 0.7227272727272728,
+      "mean": 0.45443664123993466,
+      "std": 0.10644869464106785,
+      "unique_values": 15
+    },
+    "image_count": {
+      "min": 5.0,
+      "max": 82.0,
+      "mean": 25.133333333333333,
+      "std": 22.47625907979845,
+      "unique_values": 13
+    },
+    "images_with_alt": {
+      "min": 1.0,
+      "max": 78.0,
+      "mean": 17.4,
+      "std": 21.984236776987885,
+      "unique_values": 13
+    },
+    "images_without_alt": {
+      "min": 0.0,
+      "max": 20.0,
+      "mean": 1.5333333333333334,
+      "std": 4.964764736509564,
+      "unique_values": 4
+    },
+    "images_missing_alt_attribute": {
+      "min": 0.0,
+      "max": 20.0,
+      "mean": 1.5333333333333334,
+      "std": 4.964764736509564,
+      "unique_values": 4
+    },
+    "empty_alt_count": {
+      "min": 0.0,
+      "max": 24.0,
+      "mean": 6.2,
+      "std": 7.110555533852471,
+      "unique_values": 10
+    },
+    "alt_coverage_ratio": {
+      "min": 0.04,
+      "max": 1.0,
+      "mean": 0.6567867963856763,
+      "std": 0.3383904361486904,
+      "unique_values": 13
+    },
+    "total_link_count": {
+      "min": 20.0,
+      "max": 326.0,
+      "mean": 103.53333333333333,
+      "std": 79.03574437486427,
+      "unique_values": 14
+    },
+    "internal_link_count": {
+      "min": 19.0,
+      "max": 280.0,
+      "mean": 86.46666666666667,
+      "std": 69.94651925260867,
+      "unique_values": 15
+    },
+    "external_link_count": {
+      "min": 0.0,
+      "max": 57.0,
+      "mean": 14.333333333333334,
+      "std": 18.369056105914158,
+      "unique_values": 13
+    },
+    "nofollow_link_count": {
+      "min": 0.0,
+      "max": 3.0,
+      "mean": 0.4,
+      "std": 0.879393730551528,
+      "unique_values": 4
+    },
+    "sponsored_link_count": {
+      "min": 0.0,
+      "max": 0.0,
+      "mean": 0.0,
+      "std": 0.0,
+      "unique_values": 1
+    },
+    "ugc_link_count": {
+      "min": 0.0,
+      "max": 0.0,
+      "mean": 0.0,
+      "std": 0.0,
+      "unique_values": 1
+    },
+    "internal_link_ratio": {
+      "min": 0.59375,
+      "max": 0.9844961240310076,
+      "mean": 0.8300302921572202,
+      "std": 0.1336361918531365,
+      "unique_values": 15
+    },
+    "canonical_exists": {
+      "min": 0.0,
+      "max": 1.0,
+      "mean": 0.8666666666666667,
+      "std": 0.339934634239519,
+      "unique_values": 2
+    },
+    "robots_meta_exists": {
+      "min": 0.0,
+      "max": 1.0,
+      "mean": 0.8666666666666667,
+      "std": 0.339934634239519,
+      "unique_values": 2
+    },
+    "viewport_exists": {
+      "min": 1.0,
+      "max": 1.0,
+      "mean": 1.0,
+      "std": 0.0,
+      "unique_values": 1
+    },
+    "lang_exists": {
+      "min": 1.0,
+      "max": 1.0,
+      "mean": 1.0,
+      "std": 0.0,
+      "unique_values": 1
+    },
+    "jsonld_count": {
+      "min": 0.0,
+      "max": 0.0,
+      "mean": 0.0,
+      "std": 0.0,
+      "unique_values": 1
+    },
+    "schema_org_count": {
+      "min": 0.0,
+      "max": 0.0,
+      "mean": 0.0,
+      "std": 0.0,
+      "unique_values": 1
+    },
+    "cta_count": {
+      "min": 1.0,
+      "max": 29.0,
+      "mean": 10.6,
+      "std": 8.608522908528887,
+      "unique_values": 12
+    },
+    "phone_count": {
+      "min": 0.0,
+      "max": 10.0,
+      "mean": 1.5333333333333334,
+      "std": 2.445858177045886,
+      "unique_values": 5
+    },
+    "email_count": {
+      "min": 0.0,
+      "max": 2.0,
+      "mean": 0.7333333333333333,
+      "std": 0.679869268479038,
+      "unique_values": 3
+    },
+    "external_unique_domain_count": {
+      "min": 0.0,
+      "max": 39.0,
+      "mean": 9.066666666666666,
+      "std": 11.601532465823452,
+      "unique_values": 11
+    }
+  }
+}

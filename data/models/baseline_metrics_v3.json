@@ -1,0 +1,175 @@
+{
+  "dataset": "C:\\Users\\fifi1234\\Desktop\\Tafiq AI Project\\trafiq-ai\\data\\processed\\seo_training_dataset_v3.csv",
+  "rows": 15,
+  "feature_count": 40,
+  "features": [
+    "title_exists",
+    "title_length",
+    "title_word_count",
+    "meta_description_exists",
+    "meta_description_length",
+    "meta_description_word_count",
+    "h1_count",
+    "h2_count",
+    "h3_count",
+    "h4_count",
+    "h5_count",
+    "h6_count",
+    "heading_total_count",
+    "word_count",
+    "character_count",
+    "unique_word_count",
+    "unique_word_ratio",
+    "image_count",
+    "images_with_alt",
+    "images_without_alt",
+    "images_missing_alt_attribute",
+    "empty_alt_count",
+    "alt_coverage_ratio",
+    "total_link_count",
+    "internal_link_count",
+    "external_link_count",
+    "nofollow_link_count",
+    "sponsored_link_count",
+    "ugc_link_count",
+    "internal_link_ratio",
+    "canonical_exists",
+    "robots_meta_exists",
+    "viewport_exists",
+    "lang_exists",
+    "jsonld_count",
+    "schema_org_count",
+    "cta_count",
+    "phone_count",
+    "email_count",
+    "external_unique_domain_count"
+  ],
+  "labels": [
+    "POOR",
+    "AVERAGE",
+    "GOOD"
+  ],
+  "class_distribution": {
+    "POOR": 5,
+    "AVERAGE": 6,
+    "GOOD": 4
+  },
+  "cv": {
+    "method": "StratifiedKFold",
+    "n_splits": 3,
+    "shuffle": true,
+    "random_state": 42
+  },
+  "models": {
+    "Logistic Regression": {
+      "accuracy": 0.26666666666666666,
+      "macro_f1": 0.23589743589743592,
+      "balanced_accuracy": 0.27777777777777773,
+      "confusion_matrix": [
+        [
+          0,
+          3,
+          2
+        ],
+        [
+          2,
+          2,
+          2
+        ],
+        [
+          0,
+          2,
+          2
+        ]
+      ],
+      "classification_report": {
+        "POOR": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1-score": 0.0,
+          "support": 5.0
+        },
+        "AVERAGE": {
+          "precision": 0.2857142857142857,
+          "recall": 0.3333333333333333,
+          "f1-score": 0.3076923076923077,
+          "support": 6.0
+        },
+        "GOOD": {
+          "precision": 0.3333333333333333,
+          "recall": 0.5,
+          "f1-score": 0.4,
+          "support": 4.0
+        },
+        "accuracy": 0.26666666666666666,
+        "macro avg": {
+          "precision": 0.20634920634920637,
+          "recall": 0.27777777777777773,
+          "f1-score": 0.23589743589743592,
+          "support": 15.0
+        },
+        "weighted avg": {
+          "precision": 0.20317460317460317,
+          "recall": 0.26666666666666666,
+          "f1-score": 0.22974358974358974,
+          "support": 15.0
+        }
+      }
+    },
+    "Random Forest": {
+      "accuracy": 0.26666666666666666,
+      "macro_f1": 0.2740740740740741,
+      "balanced_accuracy": 0.26111111111111107,
+      "confusion_matrix": [
+        [
+          1,
+          4,
+          0
+        ],
+        [
+          3,
+          2,
+          1
+        ],
+        [
+          0,
+          3,
+          1
+        ]
+      ],
+      "classification_report": {
+        "POOR": {
+          "precision": 0.25,
+          "recall": 0.2,
+          "f1-score": 0.2222222222222222,
+          "support": 5.0
+        },
+        "AVERAGE": {
+          "precision": 0.2222222222222222,
+          "recall": 0.3333333333333333,
+          "f1-score": 0.26666666666666666,
+          "support": 6.0
+        },
+        "GOOD": {
+          "precision": 0.5,
+          "recall": 0.25,
+          "f1-score": 0.3333333333333333,
+          "support": 4.0
+        },
+        "accuracy": 0.26666666666666666,
+        "macro avg": {
+          "precision": 0.32407407407407407,
+          "recall": 0.2611111111111111,
+          "f1-score": 0.2740740740740741,
+          "support": 15.0
+        },
+        "weighted avg": {
+          "precision": 0.3055555555555555,
+          "recall": 0.26666666666666666,
+          "f1-score": 0.2696296296296296,
+          "support": 15.0
+        }
+      }
+    }
+  }
+}

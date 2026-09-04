@@ -1,0 +1,37 @@
+{
+  "success": true,
+  "url": "https://www.lemonde.fr/",
+  "domain": "www.lemonde.fr",
+  "crawl_quality": "NORMAL",
+  "crawl_id": "crawl_20260903130109_849412",
+  "crawl_timestamp": "2026-09-03T13:01:09.849401+00:00",
+  "status_code": 200,
+  "response_time_ms": 112.12,
+  "redirect_count": 0,
+  "html_size_bytes": 1013650,
+  "feature_count": 40,
+  "prediction": "GOOD",
+  "confidence": 0.7033333333333334,
+  "confidence_interpretation": "Maximum class probability returned by the Random Forest. It is kept as-is for the current demo and is not a calibrated probability of correctness.",
+  "class_probabilities": {
+    "AVERAGE": 0.21666666666666667,
+    "GOOD": 0.7033333333333334,
+    "POOR": 0.08
+  },
+  "recommendation_count": 1,
+  "recommendations": [
+    {
+      "category": "conversion",
+      "severity": "LOW",
+      "feature": "phone_count,email_count",
+      "observed_value": {
+        "phone_count": 0.0,
+        "email_count": 0.0
+      },
+      "threshold": "phone >= 1 OR email >= 1",
+      "title": "Faciliter le contact",
+      "recommendation": "Rendre au moins un moyen de contact identifiable sur les pages où cela est pertinent.",
+      "explanation": "Aucun numéro de téléphone ni adresse email détectable n'a été trouvé."
+    }
+  ]
+}
