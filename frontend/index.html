@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Trafiq AI — Analyse SEO intelligente</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <header class="header">
+        <div class="container header-content">
+            <div class="brand">
+    <img
+        src="logo-trafiq.jpeg"
+        alt="Trafiq"
+        class="brand-logo"
+    >
+
+    <div class="brand-divider"></div>
+
+        <div class="brand-ai">
+            <strong>AI</strong>
+            <span>SEO Intelligence</span>
+        </div>
+        </div>
+
+            <div class="status">
+                <span class="status-dot"></span>
+                API disponible
+            </div>
+        </div>
+    </header>
+
+
+    <main class="container">
+
+        <!-- HERO -->
+        <section class="hero">
+            <span class="eyebrow">SEO ANALYSIS ENGINE</span>
+
+            <h2>
+                Analysez votre site avec
+                <span>l'intelligence artificielle</span>
+            </h2>
+
+            <p class="hero-description">
+                Trafiq AI analyse votre page, extrait ses caractéristiques SEO
+                et génère automatiquement des recommandations.
+            </p>
+
+            <form id="analyze-form" class="analyze-form">
+
+                <div class="input-wrapper">
+                    <span class="input-icon">🌐</span>
+
+                    <input
+                        type="url"
+                        id="url-input"
+                        placeholder="https://www.monsite.com/"
+                        required
+                    >
+                </div>
+
+                <button type="submit" id="analyze-button">
+                    <span id="button-text">Analyser</span>
+                    <span id="button-loader" class="loader hidden"></span>
+                </button>
+
+            </form>
+
+            <p id="error-message" class="error-message hidden"></p>
+        </section>
+
+
+        <!-- RESULTS -->
+        <section id="results" class="results hidden">
+
+            <!-- PREDICTION -->
+            <div class="card prediction-card">
+
+                <div class="card-header">
+                    <div>
+                        <span class="card-label">PRÉDICTION SEO</span>
+                        <h3>Résultat de l'analyse</h3>
+                    </div>
+
+                    <span id="crawl-quality" class="badge">
+                        NORMAL
+                    </span>
+                </div>
+
+                <div class="prediction-content">
+
+                    <div class="prediction-main">
+                        <span class="prediction-label">
+                            Classe prédite
+                        </span>
+
+                        <div id="prediction" class="prediction">
+                            AVERAGE
+                        </div>
+
+                        <div class="confidence">
+                            Confiance :
+                            <strong id="confidence">82 %</strong>
+                        </div>
+                    </div>
+
+
+                    <div class="probabilities">
+
+                        <div class="probability">
+                            <div class="probability-header">
+                                <span>POOR</span>
+                                <strong id="prob-poor">14 %</strong>
+                            </div>
+
+                            <div class="progress">
+                                <div
+                                    id="bar-poor"
+                                    class="progress-bar"
+                                    style="width: 14%"
+                                ></div>
+                            </div>
+                        </div>
+
+
+                        <div class="probability">
+                            <div class="probability-header">
+                                <span>AVERAGE</span>
+                                <strong id="prob-average">82 %</strong>
+                            </div>
+
+                            <div class="progress">
+                                <div
+                                    id="bar-average"
+                                    class="progress-bar"
+                                    style="width: 82%"
+                                ></div>
+                            </div>
+                        </div>
+
+
+                        <div class="probability">
+                            <div class="probability-header">
+                                <span>GOOD</span>
+                                <strong id="prob-good">4 %</strong>
+                            </div>
+
+                            <div class="progress">
+                                <div
+                                    id="bar-good"
+                                    class="progress-bar"
+                                    style="width: 4%"
+                                ></div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- TECHNICAL SUMMARY -->
+            <div class="stats-grid">
+
+                <div class="card stat-card">
+                    <span class="stat-label">FEATURES SEO</span>
+                    <strong id="feature-count">40</strong>
+                    <span>caractéristiques analysées</span>
+                </div>
+
+                <div class="card stat-card">
+                    <span class="stat-label">HTTP STATUS</span>
+                    <strong id="http-status">200</strong>
+                    <span>réponse serveur</span>
+                </div>
+
+                <div class="card stat-card">
+                    <span class="stat-label">TEMPS D'ANALYSE</span>
+                    <strong id="response-time">—</strong>
+                    <span>millisecondes</span>
+                </div>
+
+                <div class="card stat-card">
+                    <span class="stat-label">RECOMMANDATIONS</span>
+                    <strong id="recommendation-count">0</strong>
+                    <span>actions détectées</span>
+                </div>
+
+            </div>
+
+
+            <!-- RECOMMENDATIONS -->
+            <div class="card recommendations-card">
+
+                <div class="card-header">
+                    <div>
+                        <span class="card-label">RECOMMENDATION ENGINE</span>
+                        <h3>Recommandations</h3>
+                    </div>
+                </div>
+
+                <div id="recommendations" class="recommendations">
+                    <!-- Les recommandations seront injectées ici -->
+                </div>
+
+            </div>
+
+
+            <!-- RAW FEATURES -->
+            <div class="card features-card">
+
+                <div class="card-header">
+                    <div>
+                        <span class="card-label">FEATURE ENGINEERING</span>
+                        <h3>Caractéristiques SEO</h3>
+                    </div>
+
+                    <span id="domain-name" class="domain">
+                        —
+                    </span>
+                </div>
+
+                <div id="features" class="features-grid">
+                    <!-- Les features seront injectées ici -->
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <footer class="footer">
+        <div class="container">
+            <p>
+                Trafiq AI · Machine Learning SEO Analysis
+            </p>
+        </div>
+    </footer>
+
+
+    <script src="app.js"></script>
+
+</body>
+</html>

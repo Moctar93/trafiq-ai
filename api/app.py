@@ -6,13 +6,30 @@ from pathlib import Path
 from typing import Any
 
 from fastapi import FastAPI, HTTPException
+from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel, Field
 
+
+# =========================================================
+# PATH DU PROJET
+# =========================================================
+
 BASE_DIR = Path(__file__).resolve().parents[1]
+
 if str(BASE_DIR) not in sys.path:
     sys.path.insert(0, str(BASE_DIR))
 
+
+# =========================================================
+# MODULE D'ANALYSE
+# =========================================================
+
 from ml.analyze_url import run_analysis
+
+
+# =========================================================
+# APPLICATION FASTAPI
+# =========================================================
 
 app = FastAPI(
     title="Trafiq AI API",
@@ -24,6 +41,27 @@ app = FastAPI(
 )
 
 
+# =========================================================
+# CORS
+# =========================================================
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=[
+        "http://127.0.0.1:5500",
+        "http://localhost:5500",
+        "null",
+    ],
+    allow_credentials=False,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
+
+# =========================================================
+# REQUEST MODEL
+# =========================================================
+
 class AnalyzeRequest(BaseModel):
     url: str = Field(
         ...,
@@ -31,8 +69,17 @@ class AnalyzeRequest(BaseModel):
         description="URL complète à analyser.",
         examples=["https://www.lemonde.fr/"],
     )
-    timeout: int = Field(default=15, ge=1, le=120)
 
+    timeout: int = Field(
+        default=15,
+        ge=1,
+        le=120,
+    )
+
+
+# =========================================================
+# ROOT
+# =========================================================
 
 @app.get("/")
 def root() -> dict[str, Any]:
@@ -48,36 +95,90 @@ def root() -> dict[str, Any]:
     }
 
 
+# =========================================================
+# HEALTH CHECK
+# =========================================================
+
 @app.get("/health")
 def health() -> dict[str, Any]:
-    return {"status": "ok", "service": "trafiq-ai"}
+    return {
+        "status": "ok",
+        "service": "trafiq-ai",
+    }
 
+
+# =========================================================
+# ANALYSE SEO
+# =========================================================
 
 @app.post("/analyze")
-def analyze(request: AnalyzeRequest) -> dict[str, Any]:
+def analyze(
+    request: AnalyzeRequest,
+) -> dict[str, Any]:
+
     url = request.url.strip()
+
+    # Validation URL
     if not url:
-        raise HTTPException(status_code=400, detail="L'URL ne peut pas être vide.")
-    if not (url.startswith("http://") or url.startswith("https://")):
         raise HTTPException(
             status_code=400,
-            detail="L'URL doit commencer par http:// ou https://.",
+            detail="L'URL ne peut pas être vide.",
         )
 
+    if not (
+        url.startswith("http://")
+        or url.startswith("https://")
+    ):
+        raise HTTPException(
+            status_code=400,
+            detail=(
+                "L'URL doit commencer par "
+                "http:// ou https://."
+            ),
+        )
+
+    # Analyse
     try:
-        result = run_analysis(url=url, timeout=request.timeout)
+        result = run_analysis(
+            url=url,
+            timeout=request.timeout,
+        )
+
     except Exception as exc:
         raise HTTPException(
             status_code=500,
-            detail=f"Erreur interne pendant l'analyse : {exc}",
+            detail=(
+                f"Erreur interne pendant "
+                f"l'analyse : {exc}"
+            ),
         ) from exc
 
     return result
 
 
+# =========================================================
+# LANCEMENT DIRECT
+# =========================================================
+
 if __name__ == "__main__":
+
     import uvicorn
 
-    host = os.getenv("TRAFIQ_API_HOST", "127.0.0.1")
-    port = int(os.getenv("TRAFIQ_API_PORT", "8000"))
-    uvicorn.run("api.app:app", host=host, port=port, reload=False)
+    host = os.getenv(
+        "TRAFIQ_API_HOST",
+        "127.0.0.1",
+    )
+
+    port = int(
+        os.getenv(
+            "TRAFIQ_API_PORT",
+            "8000",
+        )
+    )
+
+    uvicorn.run(
+        "api.app:app",
+        host=host,
+        port=port,
+        reload=False,
+    )

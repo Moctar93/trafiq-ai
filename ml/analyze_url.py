@@ -142,7 +142,8 @@ def run_analysis(
         "FAILED",
     )
 
-    # A suspect capture is returned for transparency, but not sent to ML.
+    # A suspect capture is returned for transparency,
+    # but not sent to ML.
     if crawl_quality != "NORMAL":
         return {
             "success": False,
@@ -224,6 +225,16 @@ def run_analysis(
 
         recommendation_dicts.append(item)
 
+    # --------------------------------------------------
+    # Expose exactly the 40 ML features in the API result.
+    # The values come directly from the crawler/extractor.
+    # --------------------------------------------------
+
+    safe_features = {
+        feature: json_safe(features[feature])
+        for feature in CANDIDATE_FEATURES
+    }
+
     result: dict[str, Any] = {
         "success": True,
         "url": observation.get("url", url),
@@ -243,7 +254,12 @@ def run_analysis(
         "html_size_bytes": observation.get(
             "html_size_bytes"
         ),
+
+        # ML feature information
         "feature_count": len(CANDIDATE_FEATURES),
+        "features": safe_features,
+
+        # ML prediction
         "prediction": prediction,
         "confidence": confidence,
         "confidence_interpretation": (
@@ -252,6 +268,8 @@ def run_analysis(
             "probability of correctness."
         ),
         "class_probabilities": class_probabilities,
+
+        # Recommendations
         "recommendation_count": len(
             recommendation_dicts
         ),
